@@ -1,8 +1,12 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+
+import javax.swing.Timer;
 
 /**
  * The main class for your arcade game.
@@ -17,8 +21,10 @@ import java.util.ArrayList;
  */
 public class Main {
 	
-	public ScoreKeeper scorer;
-	public ArrayList<Level> levels;
+	private ScoreKeeper scorer;
+	private Level lev;
+	private Hero player;
+	private static int UPDATE_INTERVAL_MS = 10;
 	
 
 	/**
@@ -27,17 +33,22 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Arcade game starting!!!!!");
 		new Main();
-		
-		
-		
+	
 	}
 	
 	public Main() {
 		scorer = new ScoreKeeper();
-		levels = new ArrayList<Level>();
+		lev = new Level(null);
+		player = new Hero();
 		scanFiles();
-		scorer.writeScoreFile();
 		
+		Timer advanceStateTimer = new Timer(UPDATE_INTERVAL_MS, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				timeShift();
+			}
+		});
+		advanceStateTimer.start();
 	}
 	
 	public void scanFiles() {
@@ -53,21 +64,39 @@ public class Main {
 				System.err.println("Error with making scores file. Please scream for assistance.");
 			} 
 		}finally {
-			scorer.passScoreFile(file);
+			scorer.readScoreFile(file);
 			System.out.println("Done Making File");
 		}
 		
 		file = null;
-		String fileName = "Level";
+		String fileName = "Level" + 1 + ".txt";
 		try {
-			for(int i = 1; i < 2; i++) {
-				file = new FileReader("Level" + i + ".txt");
-				levels.add(new Level(file));
-			}
+			file = new FileReader(fileName);
 		} catch (IOException e) {
 		    System.err.println(fileName + " does not exist."); 
 		}
 		
+		
+	}
+	
+	public void handleCommands() {
+		
+	}
+	
+	public void loadStartScreen() {
+		
+	}
+	
+	public void handleLevelChange() {
+		
+	}
+	
+	public void handlePlayerMovement() {
+		
+	}
+	
+	public void timeShift() {
+		player.timeShift();
 		
 	}
 

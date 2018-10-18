@@ -6,23 +6,25 @@ import java.nio.file.Paths;
 public class ScoreKeeper {
 	
 	private FileReader file;
+	private int highScore;
 	
 	public ScoreKeeper() {
+		highScore = 0;
+		file = null;
 		
 	}
 	
-	public void passScoreFile(FileReader file) {
+	public void readScoreFile(FileReader file) {
 		this.file = file;
 	}
 	
-	public void writeScoreFile() {
-		try {
-			Files.write(Paths.get("scores.txt"), "".getBytes());
-			System.out.println("Done writing to file");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	public void loadLeaderBoard() {
+		
 	}
+	
+	public void writeScoreFile() {
+		
+	}
+
 
 }

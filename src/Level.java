@@ -16,5 +16,9 @@ public class Level {
 		System.out.println(s.nextLine());
 		
 	}
+	
+	public void checkCollision() {
+		
+	}
 
 }

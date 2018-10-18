@@ -1,25 +1,16 @@
 import java.awt.Graphics;
 
-public class Hero extends GameObject{
+public class Monster1 extends GameObject {
 	
-	private static int CAP_LIVES = 5;
-	private int lives;
-	private int curScore;
+	private boolean isBubbled;
 	
-	public Hero() {
-		lives = CAP_LIVES;
-		curScore = 0;
+	public Monster1() {
+		isBubbled = false;
 	}
 
 	@Override
 	public void movement() {
 		// TODO Auto-generated method stub
-		
-		this.jump();
-		
-	}
-	
-	private void jump() {
 		
 	}
 
@@ -35,11 +26,7 @@ public class Hero extends GameObject{
 		
 	}
 	
-	public void timeShift() {
-		
-	}
-	
-	public void fireBubble() {
+	public void jump() {
 		
 	}
 
